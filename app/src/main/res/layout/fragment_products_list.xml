@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.elksa.sample.buscador.mercadolibre.presentation.modules.products.ProductsListViewModel" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context=".presentation.modules.products.ProductsListFragment">
+
+        <include
+            android:id="@+id/layout_products_list_toolbar"
+            layout="@layout/layout_app_bar" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_products_list_empty"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:isVisible="@{viewModel.iseEmptySearchVisible}"
+            tools:visibility="visible">
+
+            <TextView
+                android:id="@+id/lbl_products_list_empty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/error_empty_search"
+                android:textSize="@dimen/text_size_large"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/img_products_list_empty"
+                android:layout_width="@dimen/error_icon_list_width"
+                android:layout_height="@dimen/error_icon_list_height"
+                android:layout_marginBottom="@dimen/spacing_small"
+                app:layout_constraintBottom_toTopOf="@id/lbl_products_list_empty"
+                app:layout_constraintEnd_toEndOf="@id/lbl_products_list_empty"
+                app:layout_constraintStart_toStartOf="@id/lbl_products_list_empty"
+                app:srcCompat="@drawable/ic_warning"
+                tools:ignore="ContentDescription" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/srl_products_list_results"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:isPullToRefreshEnabled="@{false}"
+            app:isRefreshing="@{viewModel.isLoaderVisible}"
+            app:isVisible="@{!viewModel.iseEmptySearchVisible}"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            tools:visibility="gone">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_products_list_results"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingStart="@dimen/spacing_small"
+                android:paddingTop="@dimen/spacing_xsmall"
+                android:paddingEnd="@dimen/spacing_small"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:listitem="@layout/list_item_product" />
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>
