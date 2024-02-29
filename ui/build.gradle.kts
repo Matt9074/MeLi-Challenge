@@ -40,9 +40,12 @@ dependencies {
     implementation(libs.material)
     // Glide
     api(libs.glide.core)
+    testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
+    testImplementation("org.testng:testng:6.9.6")
     ksp(libs.glide.ksp)
     // Unit tests
     androidTestImplementation(libs.junit.ext)
+    androidTestImplementation(libs.espresso.core)
     // Instrumentation tests
     androidTestImplementation(libs.junit.ext)
     androidTestImplementation(libs.espresso.core)

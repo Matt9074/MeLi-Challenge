@@ -104,6 +104,9 @@ class ProductsListViewModel @Inject constructor(
      * possible errors or the search success. This method works both for the first search and
      * further results as per the pagination.
      */
+
+    // Busqueda de productos
+
     private fun searchProducts() {
         _isLoaderVisible.value = true
         _hideKeyboardEvent.value = true

@@ -77,4 +77,6 @@ class SearchProductsUseCaseTest {
         // then
         verify(productRepositoryMock).searchProducts(SITE_ID_CO, query, offset, limit)
     }
+
+    // 3/3
 }
